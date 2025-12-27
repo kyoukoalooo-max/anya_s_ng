@@ -1,0 +1,610 @@
+@font-face {
+            font-family: osn;
+            src: url(DotGothic16-Regular.ttf);
+        }
+        @font-face {
+            font-family: title;
+            src: url(./18959.ttf);
+        }
+
+* {
+  box-sizing: border-box;  /* padding/border width ke andar count, layout easy */
+  margin: 0;               /* default outer gap hatao */
+  padding: 0;              /* default inner gap hatao */
+}
+
+/* Page layout: full height, center content, pure dark (non‑blue) theme */
+body {
+  min-height: 100vh;  /* page height kam se kam viewport ke barabar */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-image: url("./images/new_year.gif");
+  background-position: center;
+  background-size: 100%;
+  background-color: rgba(0, 0, 0, 0.80); 
+  /* backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(0.85px); */
+  color: #e5e7eb;     /* light grey text for contrast */
+  display: flex;      /* sticky footer ke liye flex layout [column] [web:255][web:260] */
+  flex-direction: column; /* content upar se neeche stack hoga */
+  align-items: center;    /* horizontally center body ke children (main + footer) */
+}
+.frame13{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 12%;
+  position: absolute;
+  right: 200px;
+  top: 150px;
+  font-family: title;
+}
+.frame13 span{
+  position: absolute;
+  left: 8px;
+  bottom: 740px;
+  font-size: 30px;
+  background-color: #3f0b0b;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+.frame_img img{
+  width: 100%;
+}
+.frame_img:hover{
+    transform: scale(1.05);
+    transition: transform 0.3s;
+  }
+.text_frame {
+  font-family: title;
+  position: absolute;
+  right: 1520px;
+  top: 10px;
+}
+.text_frame span{
+  font-size: 20;
+  position: absolute;
+  top: 18px;
+  left: 48px;
+}
+.text_frame img{
+  width: 390px;
+  height: 60px;
+  /* position: absolute;
+  right: 700px;
+  bottom: 140px; */
+}
+/* top image */
+.top-image-wrapper {
+  margin-top: 80px;   /* top se gap */
+  text-align: center; /* image ko horizontal center karega */
+}
+
+.top-image {
+  width: 100px;  /* fixed width */
+  height: auto;  /* aspect ratio maintain */
+}
+.top-image:hover {
+  transform: scale(1.1);          /* halka zoom on hover */
+  transition: transform 0.5s ease; /* smooth animation */
+  transform: rotate(360deg);
+}
+/* heading */
+#countdown-text {
+  text-align: center;      /* heading center */
+  margin-top: 12px;        /* image aur heading ke beech gap */
+  font-size: 18px;         /* size */
+  letter-spacing: 2px;     /* characters ke beech space */
+  text-transform: uppercase; /* title jaisa all caps */
+}
+
+/* main area jo counter hold karega, footer ko neeche push kare */
+main {
+  width: 100%;            /* poori width */
+  flex: 1;                /* bacha hua vertical space lega, footer bottom pe jayega [web:255] */
+  display: flex;          /* main ke andar content ko center karne ke liye */
+  flex-direction: column; /* upar se neeche */
+  align-items: center;    /* horizontal center */
+}
+
+/* counters container */
+#countdown-container {
+  text-align: center; /* inline-block counters ko center row me rakhta hai */
+  margin-top: 40px;   /* heading ke neeche gap */
+}
+
+/* each counter wrapper */
+.counter {
+  display: inline-block; /* side‑by‑side boxes, width respect hoti hai [web:217][web:222] */
+  width: 72px;           /* sab counters same width */
+  margin: 0 8px;         /* left/right gap */
+  text-align: center;    /* number + label center */
+}
+
+/* number box styling */
+.number {
+  font-size: 40px;           /* bada number */
+  margin-bottom: 10px;       /* number aur label ke beech gap */
+  padding: 10px 0;           /* box ke andar top/bottom space */
+  font-weight: 700;          /* bold */
+  border-radius: 10px;  
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(0.85px);     /* rounded corners */
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.6);
+  /* soft shadow for card feel, blandness kam kare [web:217][web:223] */
+}
+
+/* label (DAYS / HOURS) */
+.label {
+  font-size: 12px;      /* chhota text */
+  color: #a1a1aa;       /* neutral grey */
+  letter-spacing: 1px;  /* thoda spacing for clean look */
+}
+
+/* hover effect to make counters feel interactive */
+.counter:hover .number {
+  transform: translateY(-2px);                 /* halka float effect */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);  /* hover pe zyada shadow */
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  /* smooth animation on hover */
+}
+
+/* footer */
+.footer {
+  width: 100%;       
+  text-align: center;   /* center text/icons */
+  margin-bottom: 20px;  /* bottom se gap */
+  font-size: 14px;      /* thoda chhota */
+  color: #a1a1aa;       /* neutral grey text */
+}
+
+.social-links {
+  margin-bottom: 20px;  
+}
+
+.social-links a {
+  text-decoration: none;
+  margin: 0 12px;
+}
+
+.icon {
+  width: 26px;                
+  height: 26px;
+  filter: invert(1) opacity(0.85);
+}
+
+.icon:hover {
+  filter: invert(1) brightness(1.4);
+  width: 30px;
+  height: 30px;
+  transition-duration: 0.4s;
+}
+
+.credit {
+  font-size: 13px; 
+  color: #a1a1aa;
+  opacity: 0.9;  
+  margin-bottom: 20px;
+}
+
+@media (max-width: 480px) {
+  /* top spacing thoda kam on small screens */
+  .top-image-wrapper {
+    margin-top: 50px;
+  }
+
+  /* heading slightly smaller */
+  #countdown-text {
+    font-size: 16px;
+    letter-spacing: 1.5px;
+  }
+
+  /* counters: thoda chhota, gap kam */
+  .counter {
+    width: 64px;
+    margin: 0 6px;
+  }
+
+  .number {
+    font-size: 32px;
+    padding: 8px 0;
+  }
+
+  .label {
+    font-size: 11px;
+  }
+}
+
+
+/* snowflakes ke liye container: poori screen cover, pointer block nahi karega */
+#snow-container {
+  position: fixed;
+  inset: 0;              /* top:0; right:0; bottom:0; left:0; same */
+  pointer-events: none;  /* clicks neeche ke elements pe jayenge */
+  overflow: hidden;      /* bahar ke flakes hide */
+  z-index: 10;           /* content ke upar, par kuch bhi overlay heavy nahi */
+}
+
+/* individual snowflake */
+.snowflake {
+  position: absolute;
+  top: -10px;            /* screen se thoda upar se start */
+  color: #ffffff;        /* white snow */
+  opacity: 0.9;
+  font-size: 12px;       /* base size, JS se random bhi kar sakta hai */
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* falling animation */
+@keyframes fall {
+  to {
+    transform: translateY(110vh);  /* screen ke neeche tak girna */
+  }
+}
+
+
+#timezone-text {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #a1a1aa;
+}
+
+/* select: minimal, text-like style */
+#timezone-select {
+  margin-left: 5px;
+  padding: 0 2px;                 /* almost no boxy feel */
+  font-size: 12px;
+  background-color: transparent;  /* pure dark bg se match */
+  color: #a1a1aa;                 /* light text */
+  border: none;                   /* no visible border */
+  border-bottom: 1px solid #3f3f46; /* subtle underline instead of box */
+}
+
+/* hover/focus pe thoda emphasis */
+#timezone-select:hover,
+#timezone-select:focus,
+#timezone-select:active {
+  border-bottom-color: #9ca3af9d;    /* thoda lighter underline on hover */
+  background-color: #09090b;       /* dark bg instead of white */
+}
+
+/* Envelope Styles */
+#envelope-container {
+  margin-top: 100px; /* Increased to avoid overlapping countdown */
+  perspective: 1000px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+.frame11{
+  position: absolute;
+  right: 1730px;
+  top: 80px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 180px;
+  height: 180px;
+}
+.frame{
+  width: 100%;
+  height: 100%;
+}
+.bant{
+  position: absolute;
+  left: 30px;
+  top: 14px;
+  width: 70%;
+  height: 70%;
+}
+.bant:hover{
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+.bant1:hover{
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+.bant2:hover{
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+.bant3:hover{
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+.bant4:hover{
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+.bant5:hover{
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+.bant6:hover{
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+.bant7:hover{
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+.bant8:hover{
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+.bant9:hover{
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+
+.frame12{
+  position: absolute;
+  right: 1730px;
+  top: 300px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 180px;
+  height: 180px;
+}
+.frame1{
+  width: 100%;
+  height: 100%;
+}
+.bant1{
+  position: absolute;
+  left: 30px;
+  top: 22px;
+  width: 70%;
+  height: 70%;
+  z-index: 1000;
+}
+.bant2{
+  position: absolute;
+  left: 30px;
+  top: 22px;
+  width: 70%;
+  height: 70%;
+  z-index: 1500;
+}
+.bant3{
+  position: absolute;
+  left: 30px;
+  top: 22px;
+  width: 70%;
+  height: 70%;
+  z-index: 2000;
+}
+.bant4{
+  position: absolute;
+  left: 30px;
+  top: 22px;
+  width: 70%;
+  height: 70%;
+  z-index: 2500;
+}
+.bant5{
+  position: absolute;
+  left: 30px;
+  top: 22px;
+  width: 70%;
+  height: 70%;
+  z-index: 3000;
+}
+.bant6{
+  position: absolute;
+  left: 30px;
+  top: 22px;
+  width: 70%;
+  height: 70%;
+  z-index: 3500;
+}
+.bant7{
+  position: absolute;
+  left: 30px;
+  top: 22px;
+  width: 70%;
+  height: 70%;
+  z-index: 4000;
+}
+.bant8{
+  position: absolute;
+  left: 30px;
+  top: 22px;
+  width: 70%;
+  height: 70%;
+  z-index: 4500;
+}
+.bant9{
+  position: absolute;
+  left: 30px;
+  top: 22px;
+  width: 70%;
+  height: 70%;
+  z-index: 5000;
+}
+
+.envelope {
+  position: relative;
+  width: 400px; /* Made larger */
+  height: 280px; /* Made larger */
+  background: linear-gradient(135deg, #d32f2f, #388e3c); /* Red to green gradient */
+  border: 3px solid #ffd700; /* Gold border */
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.1);
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+  overflow: hidden;
+}
+
+.envelope::before {
+  content: '❄';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 20px;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.envelope::after {
+  content: '🎄';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.envelope .flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(135deg, #e53935, #43a047);
+  border-radius: 15px 15px 0 0;
+  transform-origin: top;
+  transform: rotateX(0deg);
+  transition: transform 0.6s ease;
+  z-index: 2;
+  border-bottom: 2px solid #ffd700;
+}
+
+.envelope .flap::before {
+  content: 'нажми :3';
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  color: #ffd700;
+}
+
+.envelope .body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(135deg, #4caf50, #f44336);
+  border-radius: 0 0 15px 15px;
+  border-top: 2px solid #ffd700;
+}
+
+.envelope .letter {
+  position: absolute;
+  bottom: 15px;
+  top: 178px;
+  left: 15px;
+  right: 15px;
+  height: 220px; /* Adjusted for larger envelope */
+  background: linear-gradient(135deg, #ffeac6, #ffc973);
+  border: 2px solid #ffd700;
+  padding: 15px;
+  font-size: 16px;
+  color: #333;
+  border-radius: 10px;
+  transform: translateY(0);
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  opacity: 0;
+  z-index: 1;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.envelope.open .flap {
+  transform: rotateX(-180deg);
+}
+
+.envelope.open .letter {
+  transform: translateY(-140px); /* Adjusted for larger movement */
+  opacity: 1;
+}
+
+/* Firework Styles */
+#firework-container {
+  margin-top: 50px; /* Increased spacing */
+  text-align: center;
+}
+
+#firework-button {
+  background: linear-gradient(45deg, #d32f2f, #388e3c, #ffd700); /* Red, green, gold */
+  border: 3px solid #ffd700;
+  padding: 20px 40px;
+  font-size: 20px;
+  color: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* #firework-button::before {
+  content: '🎆';
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+}
+
+#firework-button::after {
+  content: '🎆';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+} */
+
+#firework-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(255, 255, 255, 0.3);
+  background: linear-gradient(45deg, #e53935, #43a047, #ffeb3b);
+}
+
+#firework-button:hover::before,
+#firework-button:hover::after {
+  animation: sparkle 1s infinite alternate;
+}
+
+@keyframes sparkle {
+  0% { transform: translateY(-50%) scale(1); }
+  100% { transform: translateY(-50%) scale(1.2); }
+}
+
+.firework-particle {
+  position: absolute;
+  width: 20px; /* Larger particles */
+  height: 20px; /* Larger particles */
+  border-radius: 50%;
+  animation: explode 3s ease-out forwards; /* Longer animation */
+  pointer-events: none;
+  box-shadow: 0 0 10px currentColor; /* Glow effect */
+}
+
+@keyframes explode {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(var(--x), var(--y)) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) scale(0);
+    opacity: 0;
+  }
+}
+
+
