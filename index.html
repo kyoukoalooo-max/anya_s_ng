@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimal Year Countdown</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="snow-container"></div>
+
+  <header class="top-image-wrapper">
+    <img class="top-image" src="images/padoru.webp" alt="padoru">
+  </header>
+
+  <main>
+    <div class="frame13">
+      <span>НУМЫ</span>
+      <img class="frame_img" src="./images/frame3.png">
+      <img class="frame_img" src="./images/frame4.png">
+      <img class="frame_img" src="./images/frame5.png">
+    </div>
+    <div class="text_frame">
+      <span>Повесить игрушки на ёлку :3</span>
+      <img class="frame1" src="./images/frame1.png">
+    </div>
+    <div class="frame11">
+      <img class="bant"src="./images/images копия.png">
+      <img class="frame" src="./images/frame.png">
+    </div>
+    
+    <div class="frame12">
+      <img class="bant1"src="./images/shar.png" style="touch-action: none; cursor: grab;">
+      <img class="bant2"src="./images/shar.png" style="touch-action: none; cursor: grab;">
+      <img class="bant3"src="./images/shar.png" style="touch-action: none; cursor: grab;">
+      <img class="bant4"src="./images/shar.png" style="touch-action: none; cursor: grab;">
+      <img class="bant5"src="./images/shar.png" style="touch-action: none; cursor: grab;">
+      <img class="bant6"src="./images/shar.png" style="touch-action: none; cursor: grab;">
+      <img class="bant7"src="./images/shar.png" style="touch-action: none; cursor: grab;">
+      <img class="bant8"src="./images/shar.png" style="touch-action: none; cursor: grab;">
+      <img class="bant9"src="./images/shar.png" style="touch-action: none; cursor: grab;">
+
+      <img class="frame1" src="./images/frame.png">
+    </div>
+    <h1 id="countdown-text">МОЯ НЯШЕЧКА АНУТОЧКА С НОВАЙ ГОДАЙ УРООО!!</h1>
+
+    <section id="countdown-container">
+      <div class="counter">
+        <div class="number" id="days-number">00</div>
+        <div class="label">день</div>
+      </div>
+
+      <div class="counter">
+        <div class="number" id="hours-number">00</div>
+        <div class="label">час</div>
+      </div>
+
+      <div class="counter">
+        <div class="number" id="minutes-number">00</div>
+        <div class="label">минуты</div>
+      </div>
+
+      <div class="counter">
+        <div class="number" id="seconds-number">00</div>
+        <div class="label">секунды</div>
+      </div>
+    </section>
+    
+    <div id="envelope-container">
+      <div class="envelope">
+        <div class="flap"></div>
+        <div class="body"></div>
+        <div class="letter" id="letter">
+          тютютшка я тя люююю, поздравляю тебчя с наступающим а еще желаю чтобы ты харашо сегодня на поезд и доехала без проешествий С КАЙФОМ И С ЕДОЙ. 
+        хачу чтобы все твои желания в следущем году исполнилисчь ведь с тобой рядом самые главные няшечки🥺🥺🥺
+        надеюсь ты ваще не ожидала такой мини подгончик от меня и тебя устроило.
+        
+    </div>
+      </div>
+    </div>
+    
+    <div id="firework-container">
+      <button id="firework-button">нажми чтобы ебануло жоска </button>
+    </div>
+    
+  </main>
+
+ 
+  
+</body>
+<script src="script.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const selectors = ['img.bant', 'img.bant1', 'img.bant2', 'img.bant3', 'img.bant4', 'img.bant5', 'img.bant6','img.bant7' ,'img.bant8', 'img.bant9'].join(',');
+  const imgs = document.querySelectorAll(selectors);
+
+  function enableDrag(img) {
+    img.style.touchAction = 'none';
+    img.ondragstart = () => false;
+    img.style.cursor = 'grab';
+
+    function createPlaceholderIfNeeded(rect) {
+      if (img._placeholder) return img._placeholder;
+      const ph = document.createElement('div');
+      ph.style.width = rect.width + 'px';
+      ph.style.height = rect.height + 'px';
+      const display = getComputedStyle(img).display;
+      ph.style.display = (display === 'inline' ? 'inline-block' : display) || 'inline-block';
+      ph.style.verticalAlign = getComputedStyle(img).verticalAlign || 'middle';
+      ph.style.visibility = 'hidden';
+      const parent = img.parentNode;
+      parent.replaceChild(ph, img);
+      img._placeholder = ph;
+      img._originalParent = parent;
+      document.body.appendChild(img);
+      return ph;
+    }
+
+    function startDrag(e) {
+      if (e.type === 'mousedown' && e.button !== 0) return;
+      e.preventDefault();
+
+      const rect = img.getBoundingClientRect();
+      const startX = (e.touches ? e.touches[0].clientX : e.clientX);
+      const startY = (e.touches ? e.touches[0].clientY : e.clientY);
+      const offsetX = startX - rect.left;
+      const offsetY = startY - rect.top;
+
+      createPlaceholderIfNeeded(rect);
+
+      // Зафиксировать визуальный размер в пикселях, чтобы не сплющивался
+      img.style.width = rect.width + 'px';
+      img.style.height = rect.height + 'px';
+      img.style.maxWidth = 'none';
+      img.style.maxHeight = 'none';
+      img.style.transform = 'none';
+
+      img.style.position = 'absolute';
+      img.style.left = (rect.left + window.scrollX) + 'px';
+      img.style.top = (rect.top + window.scrollY) + 'px';
+      img.style.zIndex = 9999;
+      img.style.cursor = 'grabbing';
+
+      function onMove(ev) {
+        const clientX = (ev.touches ? ev.touches[0].clientX : ev.clientX);
+        const clientY = (ev.touches ? ev.touches[0].clientY : ev.clientY);
+        img.style.left = (clientX - offsetX + window.scrollX) + 'px';
+        img.style.top = (clientY - offsetY + window.scrollY) + 'px';
+      }
+
+      function endDrag() {
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', endDrag);
+        document.removeEventListener('touchmove', onMove);
+        document.removeEventListener('touchend', endDrag);
+        img.style.cursor = 'grab';
+        // остаётся в document.body в абсолютном положении — фиксируется там
+      }
+
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', endDrag);
+      document.addEventListener('touchmove', onMove, {passive:false});
+      document.addEventListener('touchend', endDrag);
+    }
+
+    img.addEventListener('mousedown', startDrag);
+    img.addEventListener('touchstart', startDrag, {passive:false});
+  }
+
+  imgs.forEach(enableDrag);
+});
+</script>
+</html>
